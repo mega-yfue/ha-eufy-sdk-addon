@@ -6,8 +6,9 @@
 ARG BUILD_FROM=ghcr.io/mega-yfue/ha-eufy-sdk-bridge:0.2.0
 FROM ${BUILD_FROM}
 
-# The bridge base is node:alpine (no s6/bashio). `jq` lets the run script read /data/options.json.
-RUN apk add --no-cache jq
+# The bridge base is node:alpine (no s6/bashio). `jq` reads /data/options.json and `curl` registers
+# Supervisor discovery with the effective add-on network mapping.
+RUN apk add --no-cache curl jq
 
 COPY run.sh /run.sh
 RUN chmod +x /run.sh

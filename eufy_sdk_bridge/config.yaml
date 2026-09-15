@@ -13,28 +13,26 @@ arch:
   - aarch64
   - amd64
 init: false
+# The entrypoint registers dynamic Supervisor discovery after reading this add-on's current network
+# mapping, so Home Assistant receives only the host plus remapped bridge and RTSP ports.
+hassio_api: true
+discovery:
+  - eufy_sdk
 # Ingress fronts the bridge's WS/HTTP on :3000 and supplies the auth the raw WS lacks.
 ingress: true
 ingress_port: 3000
 panel_icon: mdi:cctv
-# go2rtc's own ports for RTSP / WebRTC / MSE. Host these so a camera stream reaches the LAN.
+# Publish only the ports the Home Assistant integration consumes: bridge control and RTSP.
 ports:
   # Bridge WS + HTTP control. Published so the eufy-sdk HACS integration can reach it directly
   # (ingress is an HA-frontend-authenticated proxy the raw-WS client can't traverse). Point the
   # integration at homeassistant.local:3000 (or the HA host IP). Change the host port in the add-on's
-  # Network panel; set it empty there to unpublish and rely on the add-on hostname over the internal
-  # network instead.
+  # Network panel if 3000 is already used.
   3000/tcp: 3000
-  1984/tcp: 1984
   8554/tcp: 8554
-  8555/tcp: 8555
-  8555/udp: 8555
 ports_description:
   3000/tcp: Bridge WS + HTTP control (point the eufy-sdk integration here)
-  1984/tcp: go2rtc API / WebRTC
   8554/tcp: RTSP
-  8555/tcp: WebRTC (TCP)
-  8555/udp: WebRTC (UDP)
 options:
   email: ""
   password: ""

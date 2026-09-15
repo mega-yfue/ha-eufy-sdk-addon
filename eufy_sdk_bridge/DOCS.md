@@ -8,25 +8,29 @@ to talk to without you running Docker yourself.
 
 The add-on builds `FROM` the bridge image and adds one thing: it reads your add-on options and passes
 them to the bridge as the env it expects. The daemon + its bundled go2rtc then start automatically.
-The control port (`:3000`) is published so the integration can reach it, and go2rtc's RTSP/WebRTC
-ports are hosted for LAN streaming.
+The add-on publishes and registers Supervisor discovery for only the ports the integration consumes:
+the bridge control port and go2rtc RTSP port. The integration uses the same host for both bridge
+control and RTSP; only the ports differ.
 
 ## Connecting the eufy-sdk integration
 
-After the add-on is **started**, add the [`eufy-sdk`](https://github.com/mega-yfue/ha-eufy-sdk)
-integration (Settings → Devices & Services → Add Integration → eufy-sdk) and point it at the bridge:
+After the add-on is **started**, Home Assistant should discover the
+[`eufy-sdk`](https://github.com/mega-yfue/ha-eufy-sdk) integration. Confirm the discovered bridge in
+Settings → Devices & Services.
+
+If you add the integration manually, point it at the bridge:
 
 - **Host:** `homeassistant.local` (or your Home Assistant host's IP address)
 - **Port:** `3000`
+- **RTSP port:** `8554` unless you changed the add-on's RTSP host port in the **Network** panel
 
 > **Not `localhost`.** The integration runs in the Home Assistant container, so `localhost` is HA
-> itself, not the add-on. Use the host name/IP above, or the add-on's own **Hostname** (shown on this
-> add-on's **Info** tab, e.g. `local-eufy-sdk-bridge`) — that one works over HA's internal network
-> even if you unpublish the port.
+> itself, not the add-on. Use the host name/IP above with the published ports from the add-on's
+> **Network** panel.
 
-You can change the published host port in the add-on's **Network** panel (set it empty to unpublish and
-use the add-on hostname instead). On first login eufy may ask for **2FA / a captcha** — the
-integration's config flow walks you through it.
+You can change the published host ports in the add-on's **Network** panel if the defaults conflict
+with another service. On first login eufy may ask for **2FA / a captcha** — the integration's config
+flow walks you through it.
 
 ## Configuration
 
