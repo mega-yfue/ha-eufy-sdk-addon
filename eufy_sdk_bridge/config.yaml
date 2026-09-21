@@ -45,6 +45,7 @@ options:
   event_log: true
   debug: false
   debug_p2p: false
+  go2rtc_enable: true
   # ── Anker Solix (optional; a SEPARATE Anker account from eufy) ──────────────────────────────────
   # Leave email + password empty to keep Solix OFF. Fill BOTH to add the Solarbank / smart-meter
   # entities. The rest mirror the bridge defaults, so leaving them is a no-op.
@@ -73,6 +74,9 @@ schema:
   debug: bool
   # Additionally route the raw per-frame P2P transport logs (very noisy). Off by default.
   debug_p2p: bool
+  # Run the bundled go2rtc process. Turn OFF if you run go2rtc as a separate container/service
+  # on the same host (ports 8554/1984), so the bundled one does not clash with it.
+  go2rtc_enable: bool
   # Anker Solix account (separate from eufy). Fill BOTH email + password to enable Solix; empty = off.
   solix_email: "str?"
   solix_password: "password?"
