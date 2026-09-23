@@ -1,6 +1,6 @@
 # https://developers.home-assistant.io/docs/add-ons/configuration#add-on-configuration
 name: eufy-sdk bridge
-version: "0.3.0"
+version: "0.4.0"
 slug: eufy_sdk_bridge
 description: Runs the ha-eufy-sdk bridge (WS control + HTTP video + go2rtc) for the eufy-sdk HACS integration.
 url: "https://github.com/mega-yfue/ha-eufy-sdk-addon/tree/main/eufy_sdk_bridge"
