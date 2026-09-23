@@ -73,6 +73,10 @@ schema:
   stream_idle_ms: int(0,)
   # Turn a BATTERY camera's native rtspStream OFF after this long idle (ms); 0 disables. Wired untouched.
   rtsp_idle_off_ms: int(0,)
+  # How long a BATTERY camera may stream continuously (ms). Empty keeps the SDK default (45s + 10s grace),
+  # so a watched battery stream drops every ~55s and the reconnect wakes the camera again. Raise it
+  # (e.g. 180000) to keep a watched stream up. Mains cameras ignore it.
+  stream_battery_budget_ms: "int(1,)?"
   # Speculatively open a camera's P2P on a high-intent event (doorbell/person/pet/package) so live
   # view starts instantly. Off by default — it holds a battery camera's radio ~28s per event.
   prewarm: bool
