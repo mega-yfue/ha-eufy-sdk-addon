@@ -1,5 +1,21 @@
 # Changelog
 
+## 0.4.0
+
+- Built on **bridge 0.3.0**, which uses **eufy-sdk 0.2.0**. For the add-on, this means:
+  - **Anker Solix now works on the stable add-on.** Fill in the `solix_*` options (a SEPARATE Anker
+    account) to get Solarbank / smart-meter entities. Leaving them empty keeps Solix off.
+  - **Several cameras on one HomeBase can stream at the same time.** A second camera no longer waits for
+    the first to stop.
+  - Accounts that failed every request with `gtoken not equal userid` can now log in.
+  - A camera whose channel on its HomeBase is missing or shared with another device is refused with a
+    clear error, instead of streaming whichever camera sits on that channel.
+- New option **`go2rtc_enable`** (default on). Turn it off if Home Assistant's own go2rtc should serve the
+  streams instead of the bundled one.
+- New option **`stream_battery_budget_ms`**: how long a **battery** camera may stream continuously. Left
+  empty, it keeps the SDK default, which drops a watched stream about every 55 s; raise it (e.g.
+  `180000`) to keep the stream up. Mains cameras ignore it.
+
 ## 0.3.0
 
 - Surface the bridge's **Anker Solix** settings as add-on options: `solix_email` / `solix_password` /
