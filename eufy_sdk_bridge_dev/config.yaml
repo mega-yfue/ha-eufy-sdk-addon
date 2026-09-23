@@ -53,6 +53,7 @@ options:
   event_log: true
   debug: false
   debug_p2p: false
+  go2rtc_enable: true
   # ── Anker Solix (optional; a SEPARATE Anker account from eufy) ──────────────────────────────────
   # Leave email + password empty to keep Solix OFF. Fill BOTH to add the Solarbank / smart-meter
   # entities. The rest mirror the bridge defaults, so leaving them is a no-op.
@@ -72,6 +73,10 @@ schema:
   stream_idle_ms: int(0,)
   # Turn a BATTERY camera's native rtspStream OFF after this long idle (ms); 0 disables. Wired untouched.
   rtsp_idle_off_ms: int(0,)
+  # How long a BATTERY camera may stream continuously (ms). Empty keeps the SDK default (45s + 10s grace),
+  # so a watched battery stream drops every ~55s and the reconnect wakes the camera again. Raise it
+  # (e.g. 180000) to keep a watched stream up. Mains cameras ignore it.
+  stream_battery_budget_ms: "int(1,)?"
   # Speculatively open a camera's P2P on a high-intent event (doorbell/person/pet/package) so live
   # view starts instantly. Off by default — it holds a battery camera's radio ~28s per event.
   prewarm: bool
@@ -81,6 +86,9 @@ schema:
   debug: bool
   # Additionally route the raw per-frame P2P transport logs (very noisy). Off by default.
   debug_p2p: bool
+  # Run the bundled go2rtc process. Turn OFF if you run go2rtc as a separate container/service
+  # on the same host (ports 8554/1984), so the bundled one does not clash with it.
+  go2rtc_enable: bool
   # Anker Solix account (separate from eufy). Fill BOTH email + password to enable Solix; empty = off.
   solix_email: "str?"
   solix_password: "password?"

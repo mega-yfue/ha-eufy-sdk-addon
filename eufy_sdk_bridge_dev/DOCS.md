@@ -47,6 +47,7 @@ flow walks you through it.
 | `poll_ms` | `600000` | How often the bridge re-reads device state from the cloud (ms); `0` disables polling |
 | `stream_idle_ms` | `300000` | Auto-off a camera's live feed after this long with no detection (ms); `0` disables. Saves battery |
 | `rtsp_idle_off_ms` | `300000` | Turn a **battery** camera's native `rtspStream` OFF after this long idle (ms); `0` disables. Wired cameras untouched |
+| `stream_battery_budget_ms` | *(empty)* | How long a **battery** camera may stream continuously (ms). Empty keeps the SDK default (45 s + 10 s grace), so a watched stream drops every ~55 s. Raise it (e.g. `180000`) to keep it up. Mains cameras ignore it |
 | `prewarm` | `false` | Speculatively open a camera's P2P on a high-intent event (doorbell/person/pet/package) so live view starts instantly. Holds a battery camera's radio ~28s per event |
 | `event_log` | `true` | Log one line per push/semantic event (what it is, clients reached, image fetches) |
 | `debug` | `false` | Verbose bridge logging (WS commands, control timing, P2P connect/close) |

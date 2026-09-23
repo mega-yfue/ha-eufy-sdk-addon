@@ -3,7 +3,7 @@
 # Each arch builds FROM the matching bridge image. The bridge publishes a multi-arch tag, so the same
 # reference works for every arch; pinning it here keeps a rebuild reproducible.
 build_from:
-  aarch64: ghcr.io/mega-yfue/ha-eufy-sdk-bridge:0.2.0
-  amd64: ghcr.io/mega-yfue/ha-eufy-sdk-bridge:0.2.0
+  aarch64: ghcr.io/mega-yfue/ha-eufy-sdk-bridge:0.3.0
+  amd64: ghcr.io/mega-yfue/ha-eufy-sdk-bridge:0.3.0
 labels:
   org.opencontainers.image.source: "https://github.com/mega-yfue/ha-eufy-sdk-addon"
