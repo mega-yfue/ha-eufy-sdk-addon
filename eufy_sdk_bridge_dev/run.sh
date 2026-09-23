@@ -27,6 +27,8 @@ export RTSP_IDLE_OFF_MS="$(jq -r '.rtsp_idle_off_ms // 300000' "$OPTS")"
 [ "$(jq -r '.event_log // true' "$OPTS")" = "false" ] && export BRIDGE_EVENT_LOG=0
 [ "$(jq -r '.debug // false' "$OPTS")" = "true" ] && export BRIDGE_DEBUG=1
 [ "$(jq -r '.debug_p2p // false' "$OPTS")" = "true" ] && export BRIDGE_DEBUG_P2P=1
+# Bundled go2rtc is on by default; only pass the override when the user turns it off.
+[ "$(jq -r '.go2rtc_enable // true' "$OPTS")" = "false" ] && export GO2RTC_ENABLE=0
 
 # Optional Anker Solix (a SEPARATE Anker account from eufy). Empty email/password ⇒ Solix stays off
 # (the bridge enables it only when BOTH are set). Empty country ⇒ the bridge falls back to EUFY_COUNTRY.
