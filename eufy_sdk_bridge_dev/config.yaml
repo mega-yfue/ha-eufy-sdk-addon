@@ -7,7 +7,7 @@
 # the same account displaces the first's session). `stage: experimental` hides it from the store unless
 # the user's profile has Advanced Mode on.
 name: eufy-sdk bridge (dev)
-version: "0.3.0-dev.2"
+version: "0.4.0-dev.1"
 slug: eufy_sdk_bridge_dev
 stage: experimental
 description: Development/edge build of the ha-eufy-sdk bridge — tracks the bridge :dev image. Run one bridge per eufy account.
