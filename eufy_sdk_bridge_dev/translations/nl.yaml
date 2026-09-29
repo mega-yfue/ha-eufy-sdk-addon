@@ -1,0 +1,19 @@
+configuration:
+  email:
+    name: eufy email
+    description: Het emailadres van het eufy account waarmee de bridge inlogt.
+  password:
+    name: eufy password
+    description: Het wachtwoord voor dat eufy account. Opgeslagen door de Supervisor, wordt alleen verzonden naar de bridge.
+  country:
+    name: Country code
+    description: Tweeletterige landcode van het account (bijv. NL, GB, US) waarmee de juiste eufy-regio wordt geselecteerd.
+  solix_email:
+    name: Solix email (optional)
+    description: E-mailadres van het Anker Solix-account. Vul zowel dit e-mailadres als het Solix-wachtwoord in om de Solarbank-/slimme-meter-entiteiten toe te voegen. Laat dit veld leeg als je Solix niet wilt gebruiken. Dit is een apart account van eufy.
+  solix_password:
+    name: Solix password (optional)
+    description: Het wachtwoord voor het Anker Solix-account. Opgeslagen door de Supervisor, wordt alleen verzonden naar de bridge.
+  solix_country:
+    name: Solix country code (optional)
+    description: Tweeletterige landcode van het Anker Solix-account (bijv. NL, GB, DE). Laat leeg om de eufy-landcode hierboven te hergebruiken.
