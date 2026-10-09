@@ -1,5 +1,26 @@
 # Changelog
 
+## 0.5.0
+
+- Built on **bridge 0.4.0**, which uses **eufy-sdk 0.4.0**. For the add-on, this means:
+  - **Property changes reach Home Assistant as they happen**, instead of waiting for the next poll.
+  - **Station face roster**: faces known to a HomeBase are available to the integration.
+  - **Latest recording as a clip**: a HomeBase 2 camera's most recent recording can be served as an mp4.
+  - **More readable values and settings**: the device manifest carries decoded readings, and write-only
+    settings are exposed so Home Assistant can show them.
+  - The "Last event" image waits for the detection's own thumbnail instead of showing the previous one.
+  - Steadier streams: idle streams are closed reliably, one stream client is shared per camera while it
+    logs in, and a stream ends cleanly with its feed.
+  - The watchdog no longer restarts the poll because a device was quiet.
+- New optional options (empty keeps the bridge default):
+  - **`snapshot_live`** (`auto` / `on` / `off`): whether a camera tile's still wakes the camera. `auto` wakes
+    only mains cameras; battery cameras answer from their last thumbnail or frame.
+  - **`stream_fail_backoff_ms`**: after a stream fails to open, how long to wait before waking that camera
+    again (default 30 s, doubling per failure up to 5 min; `0` disables).
+  - **`clip_settle_ms`**: how long the HomeBase 2 clip waits for the station to finish writing the
+    recording (default 30 s).
+- Pair it with **integration 0.4.0**.
+
 ## 0.4.0
 
 - Built on **bridge 0.3.0**, which uses **eufy-sdk 0.2.0**. For the add-on, this means:
