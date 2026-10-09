@@ -12,7 +12,14 @@
   - Steadier streams: idle streams are closed reliably, one stream client is shared per camera while it
     logs in, and a stream ends cleanly with its feed.
   - The watchdog no longer restarts the poll because a device was quiet.
-- No new options. Pair it with **integration 0.4.0**.
+- New optional options (empty keeps the bridge default):
+  - **`snapshot_live`** (`auto` / `on` / `off`): whether a camera tile's still wakes the camera. `auto` wakes
+    only mains cameras; battery cameras answer from their last thumbnail or frame.
+  - **`stream_fail_backoff_ms`**: after a stream fails to open, how long to wait before waking that camera
+    again (default 30 s, doubling per failure up to 5 min; `0` disables).
+  - **`clip_settle_ms`**: how long the HomeBase 2 clip waits for the station to finish writing the
+    recording (default 30 s).
+- Pair it with **integration 0.4.0**.
 
 ## 0.4.0
 

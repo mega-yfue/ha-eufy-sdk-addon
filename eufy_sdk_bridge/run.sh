@@ -24,6 +24,16 @@ export RTSP_IDLE_OFF_MS="$(jq -r '.rtsp_idle_off_ms // 300000' "$OPTS")"
 # Optional: battery stream budget. Unset keeps the SDK default, so only pass it when the user sets one.
 budget_ms="$(jq -r '.stream_battery_budget_ms // empty' "$OPTS")"
 [ -n "$budget_ms" ] && export STREAM_BATTERY_BUDGET_MS="$budget_ms"
+# Optional: failed-open backoff, snapshot mode and clip settle time. Unset keeps the bridge defaults.
+backoff_ms="$(jq -r '.stream_fail_backoff_ms // empty' "$OPTS")"
+[ -n "$backoff_ms" ] && export STREAM_FAIL_BACKOFF_MS="$backoff_ms"
+case "$(jq -r '.snapshot_live // empty' "$OPTS")" in
+  on) export SNAPSHOT_LIVE=1 ;;
+  off) export SNAPSHOT_LIVE=0 ;;
+  auto) export SNAPSHOT_LIVE=auto ;;
+esac
+clip_ms="$(jq -r '.clip_settle_ms // empty' "$OPTS")"
+[ -n "$clip_ms" ] && export CLIP_SETTLE_MS="$clip_ms"
 # Feature toggle: speculative P2P prewarm on high-intent events (off by default).
 [ "$(jq -r '.prewarm // false' "$OPTS")" = "true" ] && export BRIDGE_PREWARM=1
 # Per-event log line is on by default in the bridge; only override when the user turns it off.

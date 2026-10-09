@@ -48,6 +48,9 @@ flow walks you through it.
 | `stream_idle_ms` | `300000` | Auto-off a camera's live feed after this long with no detection (ms); `0` disables. Saves battery |
 | `rtsp_idle_off_ms` | `300000` | Turn a **battery** camera's native `rtspStream` OFF after this long idle (ms); `0` disables. Wired cameras untouched |
 | `stream_battery_budget_ms` | *(empty)* | How long a **battery** camera may stream continuously (ms). Empty keeps the SDK default (45 s + 10 s grace), so a watched stream drops every ~55 s. Raise it (e.g. `180000`) to keep it up. Mains cameras ignore it |
+| `stream_fail_backoff_ms` | *(empty)* | Battery-saver: after a live-stream open **fails**, refuse to reopen that camera for this long (ms), doubling per consecutive failure up to 5 min, so go2rtc's retries get a fast error instead of waking the camera. Empty keeps the bridge default (`30000`); `0` disables |
+| `snapshot_live` | *(empty = `auto`)* | How the still on a camera tile is taken. `auto`: **mains** cameras get a fresh live still; **battery** cameras are not woken and answer from their last-event thumbnail or last streamed frame. `on`: always take a live still (wakes battery cameras). `off`: never |
+| `clip_settle_ms` | *(empty)* | How long after a detection the latest-recording clip waits before downloading it from a HomeBase 2 (ms), so the station has finished writing it. Set it at least to the camera's clip length. Empty keeps the bridge default (`30000`) |
 | `prewarm` | `false` | Speculatively open a camera's P2P on a high-intent event (doorbell/person/pet/package) so live view starts instantly. Holds a battery camera's radio ~28s per event |
 | `event_log` | `true` | Log one line per push/semantic event (what it is, clients reached, image fetches) |
 | `debug` | `false` | Verbose bridge logging (WS commands, control timing, P2P connect/close) |

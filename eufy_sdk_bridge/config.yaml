@@ -69,6 +69,16 @@ schema:
   # so a watched battery stream drops every ~55s and the reconnect wakes the camera again. Raise it
   # (e.g. 180000) to keep a watched stream up. Mains cameras ignore it.
   stream_battery_budget_ms: "int(1,)?"
+  # After a live-stream open FAILS, refuse to reopen that camera for this long (ms), doubling per failure
+  # up to 5 min, so go2rtc's retries get a fast 503 instead of waking the radio. Empty = bridge default
+  # (30000); 0 disables.
+  stream_fail_backoff_ms: "int(0,)?"
+  # How a camera tile's still (/snapshot) is taken. auto (bridge default): wake MAINS cameras for a live
+  # still, serve BATTERY cameras from their last thumbnail/frame. on: always wake. off: never wake.
+  snapshot_live: "list(auto|on|off)?"
+  # How long /clip waits after a detection before downloading the HomeBase 2 recording (ms), so the
+  # station has finished writing it. Set it at least to the clip length. Empty = bridge default (30000).
+  clip_settle_ms: "int(0,)?"
   # Speculatively open a camera's P2P on a high-intent event (doorbell/person/pet/package) so live
   # view starts instantly. Off by default — it holds a battery camera's radio ~28s per event.
   prewarm: bool
