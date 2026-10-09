@@ -1,5 +1,24 @@
 # Changelog
 
+## 0.5.0-dev.1
+
+- Rebuild from the current bridge `:dev`. The previous dev image ran bridge 0.3.0 on eufy-sdk
+  `0.3.0-beta.0`; this one is **bridge 0.4.0 on the newest eufy-sdk beta (`0.5.0-beta.x`)**, which brings
+  everything in the stable add-on 0.5.0:
+  - **Property changes reach Home Assistant as they happen**, instead of waiting for the next poll.
+  - **Station face roster** and a HomeBase 2 camera's **latest recording as an mp4 clip**.
+  - **Decoded readings and write-only settings** in the device manifest.
+  - The "Last event" image waits for the detection's own thumbnail.
+  - Stream lifecycle and watchdog fixes.
+- New optional options (empty keeps the bridge default):
+  - **`snapshot_live`** (`auto` / `on` / `off`): whether a camera tile's still wakes the camera. `auto` wakes
+    only mains cameras; battery cameras answer from their last thumbnail or frame.
+  - **`stream_fail_backoff_ms`**: after a stream fails to open, how long to wait before waking that camera
+    again (default 30 s, doubling per failure up to 5 min; `0` disables).
+  - **`clip_settle_ms`**: how long the HomeBase 2 clip waits for the station to finish writing the
+    recording (default 30 s).
+- Plus the SDK's beta line beyond 0.4.0. Pair it with **integration 0.4.0** or newer.
+
 ## 0.4.0-dev.1
 
 - Rebuild from the current bridge `:dev`. The previous dev image still ran bridge 0.1.60 on eufy-sdk
