@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.5.0-dev.1
+
+- Rebuild from the current bridge `:dev`. The previous dev image ran bridge 0.3.0 on eufy-sdk
+  `0.3.0-beta.0`; this one is **bridge 0.4.0 on the newest eufy-sdk beta (`0.5.0-beta.x`)**, which brings
+  everything in the stable add-on 0.5.0:
+  - **Property changes reach Home Assistant as they happen**, instead of waiting for the next poll.
+  - **Station face roster** and a HomeBase 2 camera's **latest recording as an mp4 clip**.
+  - **Decoded readings and write-only settings** in the device manifest.
+  - The "Last event" image waits for the detection's own thumbnail.
+  - Stream lifecycle and watchdog fixes.
+- Plus the SDK's beta line beyond 0.4.0. Pair it with **integration 0.4.0** or newer.
+
 ## 0.4.0-dev.1
 
 - Rebuild from the current bridge `:dev`. The previous dev image still ran bridge 0.1.60 on eufy-sdk
