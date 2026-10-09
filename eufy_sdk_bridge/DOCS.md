@@ -32,6 +32,21 @@ You can change the published host ports in the add-on's **Network** panel if the
 with another service. On first login eufy may ask for **2FA / a captcha** — the integration's config
 flow walks you through it.
 
+## Use a dedicated eufy account (recommended)
+
+eufy allows **one active session per account**. When the eufy app or another client logs in with the
+same account, it can bump the bridge's session. The bridge then has to log in again, and eufy may ask
+for a new **2FA code**, so Home Assistant shows a re-authentication prompt (and you get code emails).
+
+To avoid that, give the bridge an account of its own:
+
+1. Create a second eufy account.
+2. In the eufy app, on your main account, share your home/devices with it, with **admin** rights.
+3. Log in to the eufy app once with the second account to accept the invitation, then log out.
+4. Use the second account's email and password in this add-on's options.
+
+Your main account stays free for the eufy app on your phone.
+
 ## Configuration
 
 | Option | Default | Description |
