@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.8.1
+
+- Built on **bridge 0.7.1** (still eufy-sdk 0.5.0), which brings the backlog of merged bridge fixes:
+  - **Live view works on camera-style locks** (e.g. T8530 Video Smart Lock): `/stream` now falls back
+    when the SDK withholds the usual readable path.
+  - **"Last event" keeps refreshing** instead of going quiet after a few empty HomeBase replies.
+  - **SmartDrop (T8790)**: an `openLid` action.
+  - **Pre-warm actually pre-warms** when you enable it (it was warming nothing).
+  - **go2rtc ports are configurable** from the environment, and raw HEVC streams are no longer
+    mislabelled as H.264.
+  - **`EUFY_LOCAL_EVENT_REFRESH`** can disable the on-detection local refresh for cameras without
+    readable local storage (stops `history query … raw 0B` noise).
+  - Optional **timestamped logs**.
+- No new options.
+
 ## 0.8.0
 
 - Built on **bridge 0.7.0** (now **eufy-sdk 0.5.0**, up from 0.4.0). For the add-on, this means:
