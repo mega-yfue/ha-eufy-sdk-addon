@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.8.0
+
+- Built on **bridge 0.7.0** (now **eufy-sdk 0.5.0**, up from 0.4.0). For the add-on, this means:
+  - **Video Doorbell Dual (T8213) now gets a doorbell button entity.** Its press was reaching the
+    bridge but wasn't surfaced; the SDK now types it from the doorbell tables.
+  - **T8210C** is recognised as a Video Doorbell.
+  - **Siren** works on a camera behind a **HomeBase S1 Pro**.
+  - **"Last event" thumbnails in the newer `v2_` format now decode**, including covers whose colour
+    tables are encrypted.
+  - **Lock** actuation fixes (HomeBase 3 route) and more reliable push delivery.
+  - **Broader device support**: PTZ for the T8E00 and the T8354 Baby Monitor E21; the E330 Pro (T8600)
+    spotlight switch.
+- No new options.
+
 ## 0.7.0
 
 - Built on **bridge 0.6.0** (still eufy-sdk 0.4.0). For the add-on, this means:
