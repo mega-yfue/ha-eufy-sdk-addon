@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.8.2
+
+- Built on **bridge 0.7.2**. Headline fix:
+  - **HomeBase-attached cameras no longer show as *unavailable* when they're actually online.** A camera on
+    a HomeBase is now treated as reachable while its HomeBase has a live connection, instead of being marked
+    offline just because it hadn't sent a status frame recently. (If you rolled the integration back to 0.6.0
+    to work around this, you can move back to the current integration once this is installed.)
+- Also from bridge 0.7.2:
+  - **T8400/T8410** live feeds use a raw-H.264 input so they're not mis-probed (fewer black-screen/stall cases).
+  - Each device now reports the **station it hangs off**, so the integration can tell HomeBase-attached cameras from standalone ones.
+  - **Optical views** for multi-lens cameras; **PTZ** routed through the live stream's session.
+  - Opt-in **person-from-record** upgrade (`EUFY_PERSON_FROM_RECORD`).
+- No new options.
+
 ## 0.8.1
 
 - Built on **bridge 0.7.1** (still eufy-sdk 0.5.0), which brings the backlog of merged bridge fixes:
