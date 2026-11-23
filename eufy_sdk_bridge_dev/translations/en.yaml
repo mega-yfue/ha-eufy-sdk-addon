@@ -8,6 +8,12 @@ configuration:
   country:
     name: Country code
     description: Two-letter account country (e.g. GB, US, DE) — routes the correct eufy region.
+  transcode_h264:
+    name: Convert to H.264 (optional)
+    description: Serials of cameras to convert to H.264, comma-separated. For H.265 cameras such as the SoloCam S340, which do not play in browsers. Costs CPU while watched.
+  transcode_width:
+    name: Converted width (optional)
+    description: Width a converted camera is scaled to. Empty keeps 1280; 0 keeps the camera's own size.
   solix_email:
     name: Solix email (optional)
     description: Anker Solix account email. Fill this AND the Solix password to add the Solarbank / smart-meter entities. Leave empty to keep Solix off. A separate account from eufy.

@@ -70,6 +70,12 @@ schema:
   # so a watched battery stream drops every ~55s and the reconnect wakes the camera again. Raise it
   # (e.g. 180000) to keep a watched stream up. Mains cameras ignore it.
   stream_battery_budget_ms: "int(1,)?"
+  # Serials of cameras whose live video go2rtc converts to H.264 instead of copying, comma-separated. For
+  # H.265 cameras (a SoloCam S340; a camera with "High compression encoding" on), which do not play over
+  # WebRTC in Chrome nor at all in a Raspberry Pi's Chromium. Costs a CPU encode while someone watches.
+  transcode_h264: "str?"
+  # Width a converted camera is scaled to (height follows). Empty = bridge default (1280); 0 keeps its size.
+  transcode_width: "int(0,)?"
   # After a live-stream open FAILS, refuse to reopen that camera for this long (ms), doubling per failure
   # up to 5 min, so go2rtc's retries get a fast 503 instead of waking the radio. Empty = bridge default
   # (30000); 0 disables.

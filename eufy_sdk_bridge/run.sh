@@ -24,6 +24,11 @@ export RTSP_IDLE_OFF_MS="$(jq -r '.rtsp_idle_off_ms // 300000' "$OPTS")"
 # Optional: battery stream budget. Unset keeps the SDK default, so only pass it when the user sets one.
 budget_ms="$(jq -r '.stream_battery_budget_ms // empty' "$OPTS")"
 [ -n "$budget_ms" ] && export STREAM_BATTERY_BUDGET_MS="$budget_ms"
+# Optional: cameras to convert to H.264, and the width to scale them to. Unset keeps every camera copied.
+transcode="$(jq -r '.transcode_h264 // empty' "$OPTS")"
+[ -n "$transcode" ] && export TRANSCODE_H264="$transcode"
+transcode_width="$(jq -r '.transcode_width // empty' "$OPTS")"
+[ -n "$transcode_width" ] && export TRANSCODE_WIDTH="$transcode_width"
 # Optional: failed-open backoff, snapshot mode and clip settle time. Unset keeps the bridge defaults.
 backoff_ms="$(jq -r '.stream_fail_backoff_ms // empty' "$OPTS")"
 [ -n "$backoff_ms" ] && export STREAM_FAIL_BACKOFF_MS="$backoff_ms"
